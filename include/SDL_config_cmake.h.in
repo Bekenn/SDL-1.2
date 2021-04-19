@@ -1,0 +1,301 @@
+/*
+    SDL - Simple DirectMedia Layer
+    Copyright (C) 1997-2012 Sam Lantinga
+
+    This library is free software; you can redistribute it and/or
+    modify it under the terms of the GNU Lesser General Public
+    License as published by the Free Software Foundation; either
+    version 2.1 of the License, or (at your option) any later version.
+
+    This library is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+    Lesser General Public License for more details.
+
+    You should have received a copy of the GNU Lesser General Public
+    License along with this library; if not, write to the Free Software
+    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+    Sam Lantinga
+    slouken@libsdl.org
+*/
+
+#ifndef _SDL_config_h
+#define _SDL_config_h
+
+/* This is a set of defines to configure the SDL features */
+
+/* General platform specific identifiers */
+#include "SDL_platform.h"
+
+/* C datatypes */
+#cmakedefine SDL_HAS_64BIT_TYPE
+
+/* Endianness */
+#cmakedefine SDL_BYTEORDER @SDL_BYTEORDER@
+
+/* These are always present, even in freestanding implementations */
+#define HAVE_STDARG_H 1
+#define HAVE_STDDEF_H 1
+#define HAVE_STDINT_H 1
+
+/* Comment this if you want to build without any C library requirements */
+#cmakedefine01 HAVE_LIBC
+#if HAVE_LIBC
+
+/* Useful headers */
+#cmakedefine HAVE_ALLOCA_H 1
+#cmakedefine HAVE_SYS_TYPES_H 1
+#cmakedefine HAVE_STDIO_H 1
+#cmakedefine STDC_HEADERS 1
+#cmakedefine HAVE_STDLIB_H 1
+#cmakedefine HAVE_MALLOC_H 1
+#cmakedefine HAVE_MEMORY_H 1
+#cmakedefine HAVE_STRING_H 1
+#cmakedefine HAVE_STRINGS_H 1
+#cmakedefine HAVE_INTTYPES_H 1
+#cmakedefine HAVE_CTYPE_H 1
+#cmakedefine HAVE_MATH_H 1
+#cmakedefine HAVE_ICONV_H 1
+#cmakedefine HAVE_SIGNAL_H 1
+#cmakedefine HAVE_ALTIVEC_H 1
+#cmakedefine HAVE_SYS_IO_H 1
+
+/* C library functions */
+#cmakedefine HAVE_MALLOC 1
+#cmakedefine HAVE_CALLOC 1
+#cmakedefine HAVE_REALLOC 1
+#cmakedefine HAVE_FREE 1
+#cmakedefine HAVE_ALLOCA 1
+#ifndef _WIN32 /* Don't use C runtime versions of these on Windows */
+#cmakedefine HAVE_GETENV 1
+#cmakedefine HAVE_PUTENV 1
+#cmakedefine HAVE_UNSETENV 1
+#endif
+#cmakedefine HAVE_QSORT 1
+#cmakedefine HAVE_ABS 1
+#cmakedefine HAVE_BCOPY 1
+#cmakedefine HAVE_MEMSET 1
+#cmakedefine HAVE_MEMCPY 1
+#cmakedefine HAVE_MEMMOVE 1
+#cmakedefine HAVE_MEMCMP 1
+#cmakedefine HAVE_STRLEN 1
+#cmakedefine HAVE_STRLCPY 1
+#cmakedefine HAVE_STRLCAT 1
+#cmakedefine HAVE_STRDUP 1
+#cmakedefine HAVE__STRREV 1
+#cmakedefine HAVE__STRUPR 1
+#cmakedefine HAVE__STRLWR 1
+#cmakedefine HAVE_INDEX 1
+#cmakedefine HAVE_RINDEX 1
+#cmakedefine HAVE_STRCHR 1
+#cmakedefine HAVE_STRRCHR 1
+#cmakedefine HAVE_STRSTR 1
+#cmakedefine HAVE_ITOA 1
+#cmakedefine HAVE__LTOA 1
+#cmakedefine HAVE__UITOA 1
+#cmakedefine HAVE__ULTOA 1
+#cmakedefine HAVE_STRTOL 1
+#cmakedefine HAVE_STRTOUL 1
+#cmakedefine HAVE__I64TOA 1
+#cmakedefine HAVE__UI64TOA 1
+#cmakedefine HAVE_STRTOLL 1
+#cmakedefine HAVE_STRTOULL 1
+#cmakedefine HAVE__STRTOI64 1
+#cmakedefine HAVE__STRTOUI64 1
+#cmakedefine HAVE_STRTOD 1
+#cmakedefine HAVE_ATOI 1
+#cmakedefine HAVE_ATOF 1
+#cmakedefine HAVE_STRCMP 1
+#cmakedefine HAVE_STRNCMP 1
+#cmakedefine HAVE__STRICMP 1
+#cmakedefine HAVE_STRCASECMP 1
+#cmakedefine HAVE__STRNICMP 1
+#cmakedefine HAVE_STRNCASECMP 1
+#cmakedefine HAVE_SSCANF 1
+#cmakedefine HAVE_SNPRINTF 1
+#cmakedefine HAVE_VSNPRINTF 1
+#cmakedefine HAVE_ICONV 1
+#cmakedefine HAVE_SIGACTION 1
+#cmakedefine HAVE_SA_SIGACTION 1
+#cmakedefine HAVE_SETJMP 1
+#cmakedefine HAVE_NANOSLEEP 1
+#cmakedefine HAVE_CLOCK_GETTIME 1
+#cmakedefine HAVE_GETPAGESIZE 1
+#cmakedefine HAVE_MPROTECT 1
+#cmakedefine HAVE_SEM_TIMEDWAIT 1
+#cmakedefine HAVE_GETAUXVAL 1
+#cmakedefine HAVE_ELF_AUX_INFO 1
+#endif /* HAVE_LIBC */
+
+/* Allow disabling of core subsystems */
+#cmakedefine SDL_AUDIO_DISABLED 1
+#cmakedefine SDL_CDROM_DISABLED 1
+#cmakedefine SDL_CPUINFO_DISABLED 1
+#cmakedefine SDL_EVENTS_DISABLED 1
+#cmakedefine SDL_FILE_DISABLED 1
+#cmakedefine SDL_JOYSTICK_DISABLED 1
+#cmakedefine SDL_LOADSO_DISABLED 1
+#cmakedefine SDL_THREADS_DISABLED 1
+#cmakedefine SDL_TIMERS_DISABLED 1
+#cmakedefine SDL_VIDEO_DISABLED 1
+
+/* Enable various audio drivers */
+#cmakedefine SDL_AUDIO_DRIVER_ALSA 1
+#cmakedefine SDL_AUDIO_DRIVER_ALSA_DYNAMIC 1
+#cmakedefine SDL_AUDIO_DRIVER_ARTS 1
+#cmakedefine SDL_AUDIO_DRIVER_ARTS_DYNAMIC 1
+#cmakedefine SDL_AUDIO_DRIVER_BAUDIO 1
+#cmakedefine SDL_AUDIO_DRIVER_BSD 1
+#cmakedefine SDL_AUDIO_DRIVER_COREAUDIO 1
+#cmakedefine SDL_AUDIO_DRIVER_DART 1
+#cmakedefine SDL_AUDIO_DRIVER_DC 1
+#cmakedefine SDL_AUDIO_DRIVER_DISK 1
+#cmakedefine SDL_AUDIO_DRIVER_DUMMY 1
+#cmakedefine SDL_AUDIO_DRIVER_DMEDIA 1
+#cmakedefine SDL_AUDIO_DRIVER_DSOUND 1
+#cmakedefine SDL_AUDIO_DRIVER_PULSE 1
+#cmakedefine SDL_AUDIO_DRIVER_PULSE_DYNAMIC 1
+#cmakedefine SDL_AUDIO_DRIVER_ESD 1
+#cmakedefine SDL_AUDIO_DRIVER_ESD_DYNAMIC 1
+#cmakedefine SDL_AUDIO_DRIVER_MINT 1
+#cmakedefine SDL_AUDIO_DRIVER_MMEAUDIO 1
+#cmakedefine SDL_AUDIO_DRIVER_NAS 1
+#cmakedefine SDL_AUDIO_DRIVER_NAS_DYNAMIC 1
+#cmakedefine SDL_AUDIO_DRIVER_OSS 1
+#cmakedefine SDL_AUDIO_DRIVER_OSS_SOUNDCARD_H 1
+#cmakedefine SDL_AUDIO_DRIVER_PAUD 1
+#cmakedefine SDL_AUDIO_DRIVER_QNXNTO 1
+#cmakedefine SDL_AUDIO_DRIVER_SNDIO 1
+#cmakedefine SDL_AUDIO_DRIVER_SNDMGR 1
+#cmakedefine SDL_AUDIO_DRIVER_SUNAUDIO 1
+#cmakedefine SDL_AUDIO_DRIVER_WAVEOUT 1
+
+/* Enable various cdrom drivers */
+#cmakedefine SDL_CDROM_AIX 1
+#cmakedefine SDL_CDROM_BEOS 1
+#cmakedefine SDL_CDROM_BSDI 1
+#cmakedefine SDL_CDROM_DC 1
+#cmakedefine SDL_CDROM_DUMMY 1
+#cmakedefine SDL_CDROM_FREEBSD 1
+#cmakedefine SDL_CDROM_LINUX 1
+#cmakedefine SDL_CDROM_MACOS 1
+#cmakedefine SDL_CDROM_MACOSX 1
+#cmakedefine SDL_CDROM_MINT 1
+#cmakedefine SDL_CDROM_OPENBSD 1
+#cmakedefine SDL_CDROM_OS2 1
+#cmakedefine SDL_CDROM_OSF 1
+#cmakedefine SDL_CDROM_QNX 1
+#cmakedefine SDL_CDROM_WIN32 1
+
+/* Enable various input drivers */
+#cmakedefine SDL_INPUT_LINUXEV 1
+#cmakedefine SDL_INPUT_TSLIB 1
+#cmakedefine SDL_JOYSTICK_BEOS 1
+#cmakedefine SDL_JOYSTICK_DC 1
+#cmakedefine SDL_JOYSTICK_DUMMY 1
+#cmakedefine SDL_JOYSTICK_IOKIT 1
+#cmakedefine SDL_JOYSTICK_LINUX 1
+#cmakedefine SDL_JOYSTICK_MACOS 1
+#cmakedefine SDL_JOYSTICK_MINT 1
+#cmakedefine SDL_JOYSTICK_OS2 1
+#cmakedefine SDL_JOYSTICK_RISCOS 1
+#cmakedefine SDL_JOYSTICK_WINMM 1
+#cmakedefine SDL_JOYSTICK_USBHID 1
+#cmakedefine SDL_HAVE_MACHINE_JOYSTICK_H 1
+
+/* Enable various shared object loading systems */
+#cmakedefine SDL_LOADSO_BEOS 1
+#cmakedefine SDL_LOADSO_DLCOMPAT 1
+#cmakedefine SDL_LOADSO_DLOPEN 1
+#cmakedefine SDL_LOADSO_DUMMY 1
+#cmakedefine SDL_LOADSO_LDG 1
+#cmakedefine SDL_LOADSO_MACOS 1
+#cmakedefine SDL_LOADSO_OS2 1
+#cmakedefine SDL_LOADSO_WIN32 1
+
+/* Enable various threading systems */
+#cmakedefine SDL_THREAD_BEOS 1
+#cmakedefine SDL_THREAD_DC 1
+#cmakedefine SDL_THREAD_OS2 1
+#cmakedefine SDL_THREAD_PTH 1
+#cmakedefine SDL_THREAD_PTHREAD 1
+#cmakedefine SDL_THREAD_PTHREAD_RECURSIVE_MUTEX 1
+#cmakedefine SDL_THREAD_PTHREAD_RECURSIVE_MUTEX_NP 1
+#cmakedefine SDL_THREAD_SPROC 1
+#cmakedefine SDL_THREAD_WIN32 1
+
+/* Enable various timer systems */
+#cmakedefine SDL_TIMER_BEOS 1
+#cmakedefine SDL_TIMER_DC 1
+#cmakedefine SDL_TIMER_DUMMY 1
+#cmakedefine SDL_TIMER_MACOS 1
+#cmakedefine SDL_TIMER_MINT 1
+#cmakedefine SDL_TIMER_OS2 1
+#cmakedefine SDL_TIMER_RISCOS 1
+#cmakedefine SDL_TIMER_UNIX 1
+#cmakedefine SDL_TIMER_WIN32 1
+#cmakedefine SDL_TIMER_WINCE 1
+
+/* Enable various video drivers */
+#cmakedefine SDL_VIDEO_DRIVER_AALIB 1
+#cmakedefine SDL_VIDEO_DRIVER_BWINDOW 1
+#cmakedefine SDL_VIDEO_DRIVER_CACA 1
+#cmakedefine SDL_VIDEO_DRIVER_DC 1
+#cmakedefine SDL_VIDEO_DRIVER_DDRAW 1
+#cmakedefine SDL_VIDEO_DRIVER_DGA 1
+#cmakedefine SDL_VIDEO_DRIVER_DIRECTFB 1
+#cmakedefine SDL_VIDEO_DRIVER_DRAWSPROCKET 1
+#cmakedefine SDL_VIDEO_DRIVER_DUMMY 1
+#cmakedefine SDL_VIDEO_DRIVER_FBCON 1
+#cmakedefine SDL_VIDEO_DRIVER_GAPI 1
+#cmakedefine SDL_VIDEO_DRIVER_GEM 1
+#cmakedefine SDL_VIDEO_DRIVER_GGI 1
+#cmakedefine SDL_VIDEO_DRIVER_IPOD 1
+#cmakedefine SDL_VIDEO_DRIVER_NANOX 1
+#cmakedefine SDL_VIDEO_DRIVER_OS2GROP 1
+#cmakedefine SDL_VIDEO_DRIVER_OS2FS 1
+#cmakedefine SDL_VIDEO_DRIVER_PHOTON 1
+#cmakedefine SDL_VIDEO_DRIVER_PICOGUI 1
+#cmakedefine SDL_VIDEO_DRIVER_PS2GS 1
+#cmakedefine SDL_VIDEO_DRIVER_PS3 1
+#cmakedefine SDL_VIDEO_DRIVER_QTOPIA 1
+#cmakedefine SDL_VIDEO_DRIVER_QUARTZ 1
+#cmakedefine SDL_VIDEO_DRIVER_RISCOS 1
+#cmakedefine SDL_VIDEO_DRIVER_SVGALIB 1
+#cmakedefine SDL_VIDEO_DRIVER_TOOLBOX 1
+#cmakedefine SDL_VIDEO_DRIVER_VGL 1
+#cmakedefine SDL_VIDEO_DRIVER_WINDIB 1
+#cmakedefine SDL_VIDEO_DRIVER_WSCONS 1
+#cmakedefine SDL_VIDEO_DRIVER_X11 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_CONST_PARAM_XDATA32 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_DGAMOUSE 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_DYNAMIC 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_DYNAMIC_XEXT 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_DYNAMIC_XRENDER 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_VIDMODE 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_XINERAMA 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_XME 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_XRANDR 1
+#cmakedefine SDL_VIDEO_DRIVER_X11_XV 1
+#cmakedefine SDL_VIDEO_DRIVER_XBIOS 1
+
+/* Enable OpenGL support */
+#cmakedefine SDL_VIDEO_OPENGL 1
+#cmakedefine SDL_VIDEO_OPENGL_GLX 1
+#cmakedefine SDL_VIDEO_OPENGL_WGL 1
+#cmakedefine SDL_VIDEO_OPENGL_OSMESA 1
+#cmakedefine SDL_VIDEO_OPENGL_OSMESA_DYNAMIC 1
+
+/* Disable screensaver */
+#cmakedefine SDL_VIDEO_DISABLE_SCREENSAVER 1
+
+/* Enable assembly routines */
+#cmakedefine SDL_ASSEMBLY_ROUTINES 1
+#cmakedefine SDL_HERMES_BLITTERS 1
+#cmakedefine SDL_ALTIVEC_BLITTERS 1
+#cmakedefine SDL_ARM_SIMD_BLITTERS 1
+#cmakedefine SDL_ARM_NEON_BLITTERS 1
+
+#endif /* _SDL_config_h */
